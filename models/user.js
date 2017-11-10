@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
 
 var isLogin = false;
 
-// 静态方法： 找特定的一个人  实例方法： 找一类人
+// 静态方法：找一类人   实例方法： 找特定的一个人
 userSchema.statics.dologin = (username,password,callback)=>{
     db.model('user').find({'username':username,'password':password},function(err,result){
         if(err){

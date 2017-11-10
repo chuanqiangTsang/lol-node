@@ -11,10 +11,19 @@ app.use(session({
     secret: 'love'
 }))
 
+app.use('/banners',express.static('./uploads/banners'))
+
 const router = require('./router/router.js');
 
 app.post('/dologin',router.doLogin)
 
 app.post('/dologout',router.doLogout)
+
+app.post('/doUploadBanner',router.doUploadBanner);
+
+app.post('/doAddBanner',router.doAddBanner);
+
+app.get('/getBanners',router.getBanners);
+
 
 app.listen('3002')
