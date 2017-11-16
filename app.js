@@ -25,5 +25,9 @@ app.post('/doAddBanner',router.doAddBanner);
 
 app.get('/getBanners',router.getBanners);
 
+app.get('/getBannersCount',router.getBannersCount)
+
+app.post('/deleteBanner',router.deleteBanner)
+
 
 app.listen('3002')

@@ -71,7 +71,9 @@ doAddBanner: (req,res,next)=>{
 },
 
 getBanners: (req,res,next)=>{
-    bannerModel.getBanners(function(err,docs){
+    var pageSize = req.query.pageSize ? req.query.pageSize : 5;
+    var page = req.query.page ? (req.query.page - 1) : 0;
+    bannerModel.getBanners(pageSize,page,function(err,docs){
         if(err){
             console.log("ERROR:" + err);
             return;
@@ -81,5 +83,35 @@ getBanners: (req,res,next)=>{
 
     });
 },
+
+getBannersCount:(req,res,next)=>{
+    bannerModel.getBannersCount(function(err,numbers){
+        if(err){
+            console.log("ERROR:" + err);
+            return;
+        }else{
+            res.json(numbers)
+        }
+    });
+},
+
+deleteBanner: (req,res,next)=>{
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files,next) {
+        var bannerId = fields.id;
+        //console.log(bannerId);
+        bannerModel.deleteBanner(bannerId,function(err,docs){
+            if(err){
+                console.log("ERROR:" + err);
+                return;
+            }else{
+                //console.log(docs);
+                res.json({"body":"1"})
+            }
+    
+        })
+    })
+    
+}
 
 }
