@@ -14,7 +14,7 @@ app.use(session({
 app.use('/banners',express.static('./uploads/banners'))
 
 const router = require('./router/router.js');
-
+const news = require('./router/news.js');
 app.post('/dologin',router.doLogin)
 
 app.post('/dologout',router.doLogout)
@@ -29,5 +29,16 @@ app.get('/getBannersCount',router.getBannersCount)
 
 app.post('/deleteBanner',router.deleteBanner)
 
+app.post('/doAddNews',news.doAddNews)
+
+app.get('/getNewsLists',news.getNewsLists)
+
+app.get('/getNewsCount',news.getNewsCount)
+
+app.get('/getOneNew',news.getOneNew)
+
+app.post('/updateNews',news.updateNews)
+
+app.post('/deleteNews',news.deleteNews)
 
 app.listen('3002')

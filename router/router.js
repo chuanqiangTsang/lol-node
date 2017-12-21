@@ -110,8 +110,7 @@ deleteBanner: (req,res,next)=>{
             }
     
         })
-    })
-    
+    })   
 }
 
 }
